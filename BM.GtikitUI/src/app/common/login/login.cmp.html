@@ -1,0 +1,52 @@
+﻿<!-- BEGIN # MODAL LOGIN -->
+<div class="model-form">
+  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" align="center">
+          <h2>Please Login</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <!-- Begin # DIV Form -->
+        <div id="div-forms2">
+          <!-- Begin # Login Form -->
+          <form name="loginform" (ngSubmit)="lf.form.valid && login()" #lf="ngForm" novalidate>
+            <div class="modal-body">
+              <div class="input-group">
+                <div class="form-group" [ngClass]="{ 'has-error': lf.submitted && !loginEmail.valid }">
+                  <label for="username">Email</label>
+                  <input type="email" class="form-control" name="loginEmail" placeholder="Email Id" [(ngModel)]="model.loginEmail" #loginEmail="ngModel" required email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" />
+                  <div *ngIf="lf.submitted && !loginEmail.valid" class="help-block alert alert-danger">Email Id is required or Invalid</div>
+                </div>
+              </div>
+              <div class="input-group">
+                <div class="form-group" [ngClass]="{ 'has-error': lf.submitted && !password.valid }">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                  <div *ngIf="lf.submitted && !password.valid" class="help-block alert alert-danger">Password is required</div>
+                </div>
+              </div>
+              <div class="input-group">
+                <label><input type="checkbox" name="terms"> Remember me </label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary btn-lg btn-block">Login</button>
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              </div>
+              <div>
+                <p class="text-center"><a href="#">Forgot Password</a></p>
+              </div>
+            </div>
+          </form>
+          <!-- End # Login Form -->
+        </div>
+        <!-- End # DIV Form -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END # MODAL LOGIN -->

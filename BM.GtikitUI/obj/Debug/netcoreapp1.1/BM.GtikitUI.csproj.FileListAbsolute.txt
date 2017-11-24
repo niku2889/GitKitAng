@@ -1,0 +1,9 @@
+c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.deps.json
+c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.runtimeconfig.json
+c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.runtimeconfig.dev.json
+c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.AssemblyInfo.cs
+c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.dll
+c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.pdb
+c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.dll
+c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.pdb
+c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.csprojResolveAssemblyReference.cache

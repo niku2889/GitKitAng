@@ -1,0 +1,175 @@
+﻿<!-- BEGIN # MODAL REGISTER -->
+<div class="model-form">
+  <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" align="center">
+          <h2>Please SIGNUP</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <!-- Begin # DIV Form -->
+        <div id="div-forms">
+          <!-- Begin # Login Form -->
+          <div id="target">
+            <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" name="firstName" placeholder="First Name" [(ngModel)]="model.firstName" #firstName="ngModel" required />
+                        <div *ngIf="f.submitted && !firstName.valid" class="help-block alert alert-danger">First Name is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" name="lastName" placeholder="Last Name" [(ngModel)]="model.lastName" #lastName="ngModel" required />
+                        <div *ngIf="f.submitted && !lastName.valid" class="help-block alert alert-danger">Last Name is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                        <label for="username">Email</label>
+                        <input type="email" class="form-control" name="email" placeholder="Email Id" [(ngModel)]="model.email" #email="ngModel" required email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" />
+                        <div *ngIf="f.submitted && !email.valid" class="help-block alert alert-danger">Email Id is required or Invalid</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="model.password" #password="ngModel" required />
+                        <div *ngIf="f.submitted && !password.valid" class="help-block alert alert-danger">Password is required</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !terms.valid }">
+                    <label><input type="checkbox" name="terms" [(ngModel)]="model.terms" #terms="ngModel" required> I Agree to Terms and Conditions </label>
+                    <div *ngIf="f.submitted && !terms.valid" class="help-block alert alert-danger">Please agree to Terms and Conditions</div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div>
+                  <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary btn-lg btn-block">Create account</button>
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                  </div>
+                </div>
+                <div>
+                  <!--<p class="text-center"><a href="#">Here there will be a link where it will say Are you an Event Organizer?</a></p>-->
+                </div>
+              </div>
+            </form>
+            <div class="modal-footer">
+              <button class="redir" onclick="toggleVisibility('replace_target');">Are you an Event Organizer?</button>
+            </div>
+          </div>
+          <!-- End # Login Form -->
+          <!-- Begin # Login Form -->
+          <div id="replace_target" style="display:none;">
+            <form>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <label>Company Name</label>
+                      <input type="text" name="email" class="form-control" placeholder="Company Name">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <label>First Name</label>
+                      <input type="password" name="password" class="form-control" placeholder="First Name">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <label>Last Name</label>
+                      <input type="text" name="email" class="form-control" placeholder="Last Name">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <label>Email</label>
+                      <input type="password" name="password" class="form-control" placeholder="Password">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <label>Password</label>
+                      <input type="password" name="password" class="form-control" placeholder="Password">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <label>Address Line 1</label>
+                      <textarea class="form-control" placeholder="Company Address Line 1"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <label>Address Line 2</label>
+                      <textarea class="form-control" placeholder="Company Address Line 2"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <label>City</label>
+                      <input type="text" name="password" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <label>State</label>
+                      <input type="text" name="password" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="input-group">
+                      <label>Zip Code</label>
+                      <input type="text" name="password" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <label>Company Logo</label>
+                    <input type="file" id="exampleInputFile">
+                    <div class="space1"></div>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label><input type="checkbox" name="terms"> I Agree to Terms and Conditions </label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div>
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">Create account</button>
+                </div>
+              </div>
+            </form>
+            <div class="modal-footer">
+              <button class="redir" onclick="toggleVisibility('target');">Are you a Customer?</button>
+            </div>
+          </div>
+          <!-- End # Login Form -->
+        </div>
+        <!-- End # DIV Form -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END # MODAL REGISTER -->
