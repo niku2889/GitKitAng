@@ -1,4 +1,4 @@
-﻿<!-- navigation -->
+<!-- navigation -->
 <nav class="navbar navbar-default">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -18,54 +18,10 @@
         <li><a href="#" role="button" data-toggle="modal" data-target="#login-modal">Login</a></li>
         <li><a href="#" role="button" data-toggle="modal" data-target="#register-modal">Registration</a></li>
 
-        <li><a class="event" href="event-create.html">Add Event</a></li>
+        <li><a class="event" [routerLink]="['/addevent']">Add Event</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <!-- /navigation -->
-<!-- CAROUSEL -->
-<section class="banner">
-  <div id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000">
-    <!-- Wrapper For Slides -->
-    <div class="carousel-inner" role="listbox">
-      <!-- Slide -->
-      <div class="item active">
-        <!-- Slide Background -->
-        <img src="assets/img/banner.jpg" alt="" class="slide-image" />
-        <div class="bs-slider-overlay"></div>
-        <div class="container">
-          <div class="row">
-            <!-- Slide Text Layer -->
-            <div class="slide-text slide_style_center">
-              <h3 data-animation="animated fadeInDown">What is Lorem Ipsum?</h3>
-              <h1 data-animation="animated fadeInDownBig">Lorem ipsum dolor sit amet</h1>
-              <p data-animation="animated fadeInLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-              <a href="#" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">Find Out More</a>
-              <div class="left-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
-              <div class="right-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End of Slide -->
-      <!-- Slide -->
-      <div class="item">
-        <!-- Slide Background -->
-        <img src="assets/img/banner2.jpg" alt="" class="slide-image" />
-        <div class="bs-slider-overlay"></div>
-        <!-- Slide Text Layer -->
-        <div class="slide-text slide_style_center">
-          <h3 data-animation="animated fadeInDown">What is Lorem Ipsum?</h3>
-          <h1 data-animation="animated fadeInDownBig">Lorem ipsum dolor sit amet</h1>
-          <p data-animation="animated fadeInLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-          <a href="#" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">Find Out More</a>
-          <div class="left-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
-          <div class="right-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
-        </div>
-      </div>
-      <!-- End of Slide -->
-    </div><!-- End of Wrapper For Slides -->
-  </div>
-</section>
-<!-- / CAROUSEL -->
+

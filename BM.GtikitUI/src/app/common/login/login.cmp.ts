@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ViewContainerRef } from '@angular/core';
 import { CommonService } from '../common.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-
+declare var $: any;
 @Component({
     selector: 'app-login',
     templateUrl: './login.cmp.html',
@@ -27,12 +27,14 @@ export class LoginComponent implements OnInit {
     login() {
         this.loading = true;
         this.cService.loginUser(this.model.loginEmail, this.model.password)
-            .subscribe(
-            data => {
-                this.toastr.success('You are awesome!', 'Success!');
+            .subscribe((response) => {
+                console.log(response);
+                this.toastr.success('Login Successfull!', 'Success!');
+                $("#login-modal").modal('hide');
             },
-            error => {
-                this.toastr.error('error', 'error!');
+            (error) => {
+                console.log(error);
+                this.toastr.error(error, 'Error!');
                 this.loading = false;
             });
     }

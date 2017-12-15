@@ -19,7 +19,7 @@ export class CommonService {
         });
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append('Access-Control-Allow-Origin', '*');
+        //headers.append('Access-Control-Allow-Origin', '*');
         let options = new RequestOptions({ headers: headers });
 
         return this.http.post(this.API_ENDPOINT + 'GTIKIT/GTCustomer', body, options)
@@ -33,12 +33,7 @@ export class CommonService {
 
         let url = `${`${baseurl}` + `${param1}` + `${email}` +
             `${param2}` + `${pssword}`}`;
-
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Access-Control-Allow-Origin', '*');
-        let options = new RequestOptions({ headers: headers });
-
+        ;
         return this.http.post(url,'')
             .map((response: Response) => response.json());
     }

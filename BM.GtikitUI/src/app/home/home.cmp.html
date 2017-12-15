@@ -1,4 +1,49 @@
-﻿<!-- MAIN CONTENT -->
+<!-- CAROUSEL -->
+<section class="banner">
+  <div id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000">
+    <!-- Wrapper For Slides -->
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide -->
+      <div class="item active">
+        <!-- Slide Background -->
+        <img src="assets/img/banner.jpg" alt="" class="slide-image" />
+        <div class="bs-slider-overlay"></div>
+        <div class="container">
+          <div class="row">
+            <!-- Slide Text Layer -->
+            <div class="slide-text slide_style_center">
+              <h3 data-animation="animated fadeInDown">What is Lorem Ipsum?</h3>
+              <h1 data-animation="animated fadeInDownBig">Lorem ipsum dolor sit amet</h1>
+              <p data-animation="animated fadeInLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+              <a href="#" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">Find Out More</a>
+              <div class="left-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
+              <div class="right-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of Slide -->
+      <!-- Slide -->
+      <div class="item">
+        <!-- Slide Background -->
+        <img src="assets/img/banner2.jpg" alt="" class="slide-image" />
+        <div class="bs-slider-overlay"></div>
+        <!-- Slide Text Layer -->
+        <div class="slide-text slide_style_center">
+          <h3 data-animation="animated fadeInDown">What is Lorem Ipsum?</h3>
+          <h1 data-animation="animated fadeInDownBig">Lorem ipsum dolor sit amet</h1>
+          <p data-animation="animated fadeInLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+          <a href="#" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">Find Out More</a>
+          <div class="left-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
+          <div class="right-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
+        </div>
+      </div>
+      <!-- End of Slide -->
+    </div><!-- End of Wrapper For Slides -->
+  </div>
+</section>
+<!-- / CAROUSEL -->
+<!-- MAIN CONTENT -->
 <section class="body-con">
   <div class="container">
     <div class="row">
@@ -9,16 +54,16 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="username" placeholder="Search events or categories">
+                  <input type="text" [(ngModel)]="searchByCategory" class="form-control" name="searchByCategory" placeholder="Search events or categories">
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="password" placeholder="kolkta,India">
+                  <input type="text" [(ngModel)]="searchByPlace" class="form-control" name="searchByPlace" placeholder="kolkta,India">
                 </div>
               </div>
               <div class="col-md-3">
-                <select class="form-control minimal">
+                <select class="form-control minimal" [(ngModel)]="searchByDate" name="searchByDate" >
                   <option value="" selected="selected">All Dates</option>
                   <option value="today">Today</option>
                   <option value="tomorrow">Tomorrow</option>
@@ -29,7 +74,7 @@
                 </select>
               </div>
               <div class="col-md-2">
-                <button type="submit" class="btn btn-default">Search</button>
+                <button type="submit" class="btn btn-default" (click)="GetSearchEvents()">Search</button>
               </div>
             </div>
           </form>
@@ -40,218 +85,32 @@
       </div>
       <div class="col-md-12">
         <div class="row">
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img1.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
+          <div *ngFor="let item of eventData; let i = index">
+            <div class="col-md-4" *ngIf="!isSeeMore || i < 6">
+              <div class="event-box">
+                <div class="main">
+                  <div class="event-img view view-first">
+                    <img class="img-responsive" src="assets/img/event/img{{item.EventImage1}}" alt="" />
+                    <div class="mask">
+                      <a href="#" class="info"><i class="fa fa-link"></i></a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img2.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
-                  </div>
+                <div class="event-con">
+                  <h3>{{item.EventName}}</h3>
+                  <p class="pad-top"><i class="fa fa-calendar"></i>{{item.EventStartDateTime | date:'short'}}</p>
+                  <p><i class="fa fa-map-marker"></i>{{item.PlaceName}}</p>
                 </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img3.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img4.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img5.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img6.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img1.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img2.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img3.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img4.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img5.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="event-box">
-              <div class="main">
-                <div class="event-img view view-first">
-                  <img class="img-responsive" src="assets/img/event/img6.jpg" alt="" />
-                  <div class="mask">
-                    <a href="#" class="info"><i class="fa fa-link"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="event-con">
-                <h3>name of the event</h3>
-                <p class="pad-top"><i class="fa fa-calendar"></i>21.01.2017, 21:00</p>
-                <p><i class="fa fa-map-marker"></i>Location Name</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-12 text-center">
-        <a class="btn btn-info more" href="#">See more</a>
+      <div class="col-md-12 text-center" *ngIf="isSeeMore">
+        <a class="btn btn-info more" (click)="SeeMoreEvents()">See more</a>
       </div>
     </div>
-
   </div>
+  <br />
 </section>
 <!-- / MAIN CONTENT -->

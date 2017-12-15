@@ -7,3 +7,22 @@ c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\bi
 c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.dll
 c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.pdb
 c:\users\nikunj\documents\visual studio 2017\Projects\BM.GtikitUI\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.csprojResolveAssemblyReference.cache
+C:\Users\nikunj\Documents\GitHub\GitKitAng\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.deps.json
+C:\Users\nikunj\Documents\GitHub\GitKitAng\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.runtimeconfig.json
+C:\Users\nikunj\Documents\GitHub\GitKitAng\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.runtimeconfig.dev.json
+C:\Users\nikunj\Documents\GitHub\GitKitAng\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.dll
+C:\Users\nikunj\Documents\GitHub\GitKitAng\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.pdb
+C:\Users\nikunj\Documents\GitHub\GitKitAng\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.csprojResolveAssemblyReference.cache
+C:\Users\nikunj\Documents\GitHub\GitKitAng\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.AssemblyInfo.cs
+C:\Users\nikunj\Documents\GitHub\GitKitAng\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.dll
+C:\Users\nikunj\Documents\GitHub\GitKitAng\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.pdb
+C:\Vipul\GitKitAng\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.deps.json
+C:\Vipul\GitKitAng\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.runtimeconfig.json
+C:\Vipul\GitKitAng\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.runtimeconfig.dev.json
+C:\Vipul\GitKitAng\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.dll
+C:\Vipul\GitKitAng\BM.GtikitUI\bin\Debug\netcoreapp1.1\BM.GtikitUI.pdb
+C:\Vipul\GitKitAng\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.csprojResolveAssemblyReference.cache
+C:\Vipul\GitKitAng\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.csproj.CoreCompileInputs.cache
+C:\Vipul\GitKitAng\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.AssemblyInfo.cs
+C:\Vipul\GitKitAng\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.dll
+C:\Vipul\GitKitAng\BM.GtikitUI\obj\Debug\netcoreapp1.1\BM.GtikitUI.pdb
