@@ -2,7 +2,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewContainerRef } from '@angular/core';
 import { CommonService } from '../common.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'app-register',
@@ -12,16 +11,15 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class RegisterComponent implements OnInit {
     model: any = {};
     loading = false;
+    successMsg: string = '';
+    errorMsg: string = '';
 
     ngOnInit() {
     }
 
     constructor(
         private router: Router,
-        private cService: CommonService,
-        public toastr: ToastsManager,
-        vcr: ViewContainerRef) {
-        this.toastr.setRootViewContainerRef(vcr);
+        private cService: CommonService) {
     }
 
     register() {
@@ -29,11 +27,18 @@ export class RegisterComponent implements OnInit {
         this.cService.createUser(this.model)
             .subscribe(
             data => {
-                this.toastr.success('You are awesome!', 'Success!');
+                this.successMsg = data;
+                this.loading = false;
+                setTimeout(function () {
+                    this.successMsg = '';
+                }.bind(this), 5000);
             },
             error => {
-                this.toastr.error('error', 'error!');
                 this.loading = false;
+                this.errorMsg = error._body;
+                setTimeout(function () {
+                    this.errorMsg = '';
+                }.bind(this), 5000);
             });
     }
 }

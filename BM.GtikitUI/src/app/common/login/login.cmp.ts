@@ -2,8 +2,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewContainerRef } from '@angular/core';
 import { CommonService } from '../common.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 declare var $: any;
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.cmp.html',
@@ -12,30 +12,34 @@ declare var $: any;
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
+    successMsg: string = '';
+    errorMsg: string = '';
 
     ngOnInit() {
     }
 
     constructor(
         private router: Router,
-        private cService: CommonService,
-        public toastr: ToastsManager,
-        vcr: ViewContainerRef) {
-        this.toastr.setRootViewContainerRef(vcr);
+        private cService: CommonService) {
     }
 
     login() {
         this.loading = true;
         this.cService.loginUser(this.model.loginEmail, this.model.password)
             .subscribe((response) => {
-                console.log(response);
-                this.toastr.success('Login Successfull!', 'Success!');
+                this.successMsg = response;
                 $("#login-modal").modal('hide');
+                this.loading = false;
+                setTimeout(function () {
+                    this.successMsg = '';
+                }.bind(this), 5000);
             },
             (error) => {
-                console.log(error);
-                this.toastr.error(error, 'Error!');
                 this.loading = false;
+                this.errorMsg = error._body;
+                setTimeout(function () {
+                    this.errorMsg = '';
+                }.bind(this), 5000);
             });
     }
 }

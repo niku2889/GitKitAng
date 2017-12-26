@@ -18,7 +18,9 @@ export class AddEventComponent implements OnInit {
     freeModel: any = {};
     paidModel: any = {};
     ticketData: any[] = [];
-
+    successMsg: string = '';
+    errorMsg: string = '';
+    
     isSectionHide1: boolean = true;
     isSectionHide2: boolean = false;
     isSectionHide3: boolean = false;
@@ -44,22 +46,18 @@ export class AddEventComponent implements OnInit {
     }
 
     addEvent() {
-        console.log(this.eventModel);
         this.setDivHideShow(false, true, false, false);
     }
 
     addLocation() {
-        console.log(this.locationModel);
         this.setDivHideShow(false, false, true, false);
     }
 
     addDate() {
-        console.log(this.dateModel);
         this.setDivHideShow(false, false, false, true);
     }
 
     addEventOccur() {
-        console.log(this.occurModel);
     }
 
     backMenu1() {
@@ -85,14 +83,12 @@ export class AddEventComponent implements OnInit {
         this.setTicketDiveHideShow(false, true);
     }
     addFreeTicket() {
-        console.log(this.freeModel);
         this.freeModel.price = 0;
         this.freeModel.type = "0";
         this.ticketData.push(this.freeModel);
         this.freeModel = {};
     }
     addPaidTicket() {
-        console.log(this.paidModel);
         this.freeModel.type = "1";
         this.ticketData.push(this.paidModel);
         this.paidModel = {};
@@ -107,7 +103,6 @@ export class AddEventComponent implements OnInit {
 
     SaveEvent() {
         let tData:any[] = [];
-        console.log(this.ticketData);
         for (let i = 0; i < this.ticketData.length; i++) {
             const ticket = JSON.stringify({
                 "EventTicketId": 0,
@@ -119,17 +114,21 @@ export class AddEventComponent implements OnInit {
                 "TicketDiscount": this.ticketData[i].perOrder,
                 "IsActive": true
             });
-            console.log(ticket);
             tData.push(ticket);
-            console.log(tData);
         }
         this.eService.saveEvent(this.eventModel, this.locationModel, this.dateModel, this.occurModel, this.timeZoneModel, tData)
             .subscribe(
             data => {
-                this.toastr.success('You are awesome!', 'Success!');
+                this.successMsg = data;
+                setTimeout(function () {
+                    this.successMsg = '';
+                }.bind(this), 5000);
             },
             error => {
-                console.log(error);
+                this.errorMsg = error._body;
+                setTimeout(function () {
+                    this.errorMsg = '';
+                }.bind(this), 5000);
             });
     }
 }

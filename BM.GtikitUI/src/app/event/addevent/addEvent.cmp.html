@@ -1,4 +1,4 @@
-  <!-- EVENT CREATE -->
+<!-- EVENT CREATE -->
 <section class="event-create">
   <div class="container">
     <div class="row">
@@ -140,6 +140,8 @@
               <!--<div class="form-group">
                 <h6 id="ask">What type of ticket would you like to start with?</h6>
               </div>-->
+              <div *ngIf="successMsg" class="help-block alert alert-success">{{successMsg}}</div>
+              <div *ngIf="errorMsg" class="help-block alert alert-danger">{{errorMsg}}</div>
               <div class="contents">
                 <div class="row">
                   <div class="col-md-12">

@@ -11,6 +11,8 @@ export class EventService {
     constructor(private http: Http) { }
 
     saveEvent(event: any, location: any, date: any, occur: any, timezone: any, tickit: any) {
+        console.log(date);
+        console.log(tickit)
         const body = JSON.stringify({
             "ProviderEventId": 0,
             "ProviderId": 1,
@@ -22,7 +24,13 @@ export class EventService {
             "ContactName": "Test Name",
             "ContactNumber": "1234567891",
             "IsFreeEvent": true,
-            "Address": location.vanueName + ' ' + location.address1 + ' ' + location.address2 + ' ' + location.city + ' ' + location.state + ' ' + location.zipCode + ' ' + location.country,
+            "Address": location == undefined ? '' : (location.vanueName == undefined ? '': location.vanueName) + ' ' + 
+                                                    (location.address1  == undefined ? '': location.address1) + ' ' + 
+                                                    (location.address2 == undefined ? '': location.address2) + ' ' + 
+                                                    (location.city  == undefined ? '': location.city) + ' ' + 
+                                                    (location.state == undefined ? '': location.state) + ' ' + 
+                                                    (location.zipCode  == undefined ? '': location.zipCode) + ' ' + 
+                                                    (location.country  == undefined ? '': location.country),
             "IsActive": true,
             "EventStartDateTime": date.startEndDate[0],
             "EventEndDateTime": date.startEndDate[1],
@@ -38,7 +46,6 @@ export class EventService {
         console.log(body)
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append('Access-Control-Allow-Origin', '*');
         let options = new RequestOptions({ headers: headers });
 
         return this.http.post(this.API_ENDPOINT + 'GTIKIT/GTCustomer/GTEvents', body, options)
