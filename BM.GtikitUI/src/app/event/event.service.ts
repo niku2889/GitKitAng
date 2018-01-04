@@ -24,13 +24,13 @@ export class EventService {
             "ContactName": "Test Name",
             "ContactNumber": "1234567891",
             "IsFreeEvent": true,
-            "Address": location == undefined ? '' : (location.vanueName == undefined ? '': location.vanueName) + ' ' + 
-                                                    (location.address1  == undefined ? '': location.address1) + ' ' + 
-                                                    (location.address2 == undefined ? '': location.address2) + ' ' + 
-                                                    (location.city  == undefined ? '': location.city) + ' ' + 
-                                                    (location.state == undefined ? '': location.state) + ' ' + 
-                                                    (location.zipCode  == undefined ? '': location.zipCode) + ' ' + 
-                                                    (location.country  == undefined ? '': location.country),
+            "Address": location == undefined ? '' : (location.vanueName == undefined ? '' : location.vanueName) + ' ' +
+                (location.address1 == undefined ? '' : location.address1) + ' ' +
+                (location.address2 == undefined ? '' : location.address2) + ' ' +
+                (location.city == undefined ? '' : location.city) + ' ' +
+                (location.state == undefined ? '' : location.state) + ' ' +
+                (location.zipCode == undefined ? '' : location.zipCode) + ' ' +
+                (location.country == undefined ? '' : location.country),
             "IsActive": true,
             "EventStartDateTime": date.startEndDate[0],
             "EventEndDateTime": date.startEndDate[1],
@@ -52,6 +52,47 @@ export class EventService {
             .map((response: Response) => response.json());
     }
 
+    getEventDetails(id: any) {
+        return this.http.get(this.API_ENDPOINT + 'GTEvent/' + id)
+            .map((response: Response) => response.json());
+    }
+
+    GetAllEvents() {
+        return this.http.get(this.API_ENDPOINT + 'GTEvent')
+            .map((response: Response) => response.json());
+    }
+
+    addEventAddress(location: any) {
+        const body = JSON.stringify({
+            "AddressLine1": (location.address1 == undefined ? '' : location.address1),
+            "AddressLine2": (location.address2 == undefined ? '' : location.address2),
+            "City": (location.city == undefined ? '' : location.city),
+            "CountryID": (location.country == undefined ? '' : location.country),
+            "FaxNo": "123456",
+            "IsActive": true,
+            "IsDelete": false,
+            "PhoneNo": "1234567891",
+            "PinCode": (location.zipCode == undefined ? '' : location.zipCode),
+            "PlaceDetailName": location == undefined ? '' : (location.vanueName == undefined ? '' : location.vanueName),
+            "PlaceGroupId": 1,
+            "PlaceId": location.location,
+            "State": (location.state == undefined ? '' : location.state),
+            "WebSite": "www.gtikit.com"
+        });
+        console.log(body)
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(this.API_ENDPOINT + 'GTIKIT/GTCustomer/GTEventPlace/Addresses', body, options)
+            .map((response: Response) => response.json());
+    }
+
+    getEventAddress(eventid: any) {
+        return this.http.get(this.API_ENDPOINT + 'GTIKIT/GTCustomer/EventPlaceAddress/' + eventid)
+            .map((response: Response) => response.json());
+    }
+    
     private handleError(error: any) {
         return Observable.throw(error.json());
     }

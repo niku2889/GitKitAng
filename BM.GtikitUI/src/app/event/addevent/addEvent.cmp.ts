@@ -20,13 +20,14 @@ export class AddEventComponent implements OnInit {
     ticketData: any[] = [];
     successMsg: string = '';
     errorMsg: string = '';
-    
+
     isSectionHide1: boolean = true;
     isSectionHide2: boolean = false;
     isSectionHide3: boolean = false;
     isSectionHide4: boolean = false;
     isFreeTicket: boolean = false;
     isPaidTicket: boolean = false;
+    isAddress: boolean = false;
 
     constructor(
         private router: Router,
@@ -50,7 +51,11 @@ export class AddEventComponent implements OnInit {
     }
 
     addLocation() {
-        this.setDivHideShow(false, false, true, false);
+        if (this.locationModel.address1) {
+            this.setDivHideShow(false, false, true, false);
+        } else {
+            this.isAddress = true;
+        }
     }
 
     addDate() {
@@ -102,7 +107,7 @@ export class AddEventComponent implements OnInit {
     }
 
     SaveEvent() {
-        let tData:any[] = [];
+        let tData: any[] = [];
         for (let i = 0; i < this.ticketData.length; i++) {
             const ticket = JSON.stringify({
                 "EventTicketId": 0,
@@ -119,6 +124,7 @@ export class AddEventComponent implements OnInit {
         this.eService.saveEvent(this.eventModel, this.locationModel, this.dateModel, this.occurModel, this.timeZoneModel, tData)
             .subscribe(
             data => {
+                this.addEventAddress();
                 this.successMsg = data;
                 setTimeout(function () {
                     this.successMsg = '';
@@ -129,6 +135,16 @@ export class AddEventComponent implements OnInit {
                 setTimeout(function () {
                     this.errorMsg = '';
                 }.bind(this), 5000);
+            });
+    }
+
+    addEventAddress() {
+        this.eService.addEventAddress(this.locationModel)
+            .subscribe(
+            data => {
+            },
+            error => {
+                console.log(error);
             });
     }
 }

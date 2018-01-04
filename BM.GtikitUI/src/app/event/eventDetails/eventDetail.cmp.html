@@ -1,0 +1,266 @@
+<!-- MAIN CONTENT -->
+<section class="event-detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>{{eventData[0]?.EventName}}</h2>
+                <p>
+                    <a href="#">{{eventData[0]?.PlaceName}} , {{addressData[0]?.AddressLine1}} {{addressData[0]?.AddressLine2}} , {{addressData[0]?.City}}
+                        , {{addressData[0]?.State}} , {{addressData[0]?.PinCode}} </a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="event-detail-box">
+                    <h3>Ticket Information</h3>
+                    <div class="ticket-box">
+                        <table class="table table-striped table-condensed" width="100%">
+                            <thead>
+                                <tr>
+                                    <th width="68%" align="left">Type</th>
+                                    <th>&nbsp;</th>
+                                    <th width="32%" align="right">Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of ticketData">
+                                    <td>
+                                        <strong>{{item.TicketType}}</strong>
+                                        <div class="des">Presentation is 60 minutes. Please arrive 10-15 minutes early to allow time to check
+                                            in.
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span *ngIf="item.TicketPrice == 0" class="label label-success">Free</span>
+                                        <span *ngIf="item.TicketPrice > 0" class="label label-success">$ {{item.TicketPrice}}</span>
+                                    </td>
+                                    <td align="right">
+                                        <select class="form-control minimal">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a class="btn btn-default more" href="#">Register</a>
+                    </div>
+                </div>
+                <!-- / Ticket Information -->
+                <!-- <div class="event-detail-box">
+                    <h3>Who's Going</h3>
+                    <div class="going-box">
+                        <p class="text-center">Connect to see which of your Facebook friends are going to FREE Extreme Couponing Event! Wednesday,
+                            September 20, 2017 in Rutherford, New Jersey!.</p>
+                        <div class="fb-login">
+                            <a href="https://www.facebook.com/login.php" rel="nofollow" class="social_share_link" target="_blank">
+                                <i class="fa fa-facebook"></i>Connect with Facebook</a>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- / Who's Going -->
+                <!-- <div class="event-detail-box">
+                    <div class="social-like text-center">
+                        <p>
+                            <strong class="col-pink">Share</strong> FREE Extreme Couponing Event! Wednesday, September 20, 2017 in Rutherford, New
+                            Jersey!</p>
+                        <ul>
+                            <li>
+                                <a href="https://www.google.com/gmail/" rel="nofollow" class="social_share_link gmail" target="_blank">
+                                    <i class="fa fa-envelope"></i> Email</a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/uas/login" rel="nofollow" class="social_share_link in" target="_blank">
+                                    <i class="fa fa-linkedin"></i> Share</a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/login?lang=en" rel="nofollow" class="social_share_link tw" target="_blank">
+                                    <i class="fa fa-twitter"></i> Tweet</a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/login.php" rel="nofollow" class="social_share_link fb" target="_blank">
+                                    <i class="fa fa-facebook"></i> like</a>
+                            </li>
+                        </ul>
+                        <small>40 people like this.
+                            <a href="https://www.facebook.com/" target="_blank">Sign Up</a> to see what your friends like.</small>
+                    </div>
+                </div> -->
+                <!-- / social Sharing -->
+                <!-- <div class="event-detail-box">
+                    <h3>Event Details</h3>
+                    <div class="coupon-box">
+                        <h2 class="text-center">
+                            <a href="#">COUPON MATCH UPS CLICK HERE!</a>
+                        </h2>
+                        <h1 class="text-center">Free EXTREME COUPONING Workshop at the Renaissance Meadowlands Hotel in Rutherford, New Jersey!</h1>
+                        <div class="col-box1">
+                            <h2>Wednesday, September 20th, 2017!</h2>
+                            <h4>Learn Extreme Savings, Without Extreme Effort! Slash your grocery bill by $100's each month!</h4>
+
+                        </div>
+                        <div class="row cli-details">
+                            <div class="col-md-7">
+                                <p>Meet Kelly Gibbs, as seen on TLC's Extreme Couponing! You will learn the couponing secrets
+                                    the PROS use to slash your grocery bill by hundreds of dollars a month. Kelly will share
+                                    her in-depth tips, tricks and secrets used to save thousands of dollars on groceries.
+                                    We all have to buy groceries, come learn the REAL way to do it on a shoestring budget.
+                                    Don't miss this chance to change your family's monthly budget forver. You won't believe
+                                    how easy it is for you to save hundreds per month after attending this amazing FREE workshop!
+                                    Don't miss this free event! It will change your world!</p>
+                            </div>
+                            <div class="col-md-5">
+                                <img class="img-responsive" src="img/women.jpg" alt="" />
+                            </div>
+                        </div>
+                        <div class="event-add text-center">
+                            <h3>DON'T miss this Class!! Change your Family's Budget FOREVER!! </h3>
+                            <h4>Renaissance Meadowlands Hotel</h4>
+                            <p>801 Rutherford Ave
+                                <br> Rutherford, NJ 07070
+                                <br>
+                                <strong>3:30pm OR 7:00pm</strong>
+                            </p>
+                        </div>
+                        <div class="event-deta-bot text-center">
+                            <h3>Space is limited! You MUST register to attend this FREE event. Tell your friends so they can
+                                attend with you!</h3>
+                            <span class="socil-con">Please re-post a link to this event on Facebook, Twitter, and Instagram. See you there!</span>
+                        </div>
+                        <div class="row share-two text-center">
+                            <div class="col-md-6">
+                                <div class="share-box">
+                                    <h3>DOOR PRIZES and GIVEAWAYS:</h3>
+                                    <p>Win raffled Grocery Gift cards and other prizes! </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="share-box">
+                                    <h3>SAVINGS ARE MEANT TO BE SHARED:</h3>
+                                    <p>Make sure your friends attend with you. Who do you know looking for a major budget windfall?
+                                        They will need to register, too.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fb-link text-center">
+                            <span class="socil-con">Post a link to this registration page on your Facebook! </span>
+                            <a href="#">http://njevent1.eventbrite.com</a>
+                        </div>
+                        <div class="event-deta-bot text-center">
+                            <h3>HURRY, LIMITED SEATING:</h3>
+                            <span class="socil-con">Don't miss out. FREE EVENT seating will run out, so print your ticket today while it is still
+                                available!</span>
+                        </div>
+                    </div>
+                    <div class="event-foo">
+                        Have questions about FREE Extreme Couponing Event! Wednesday, September 20, 2017 in Rutherford, New Jersey!?
+                        <a
+                            href="#">Contact the organizer</a>
+                    </div>
+                </div> -->
+            </div>
+
+
+            <div class="col-md-4">
+                <!-- <div class="event-detail-box text-center">
+                    <a class="btn btn-default more" href="#">Save This Event</a>
+                </div> -->
+                <div class="event-detail-box">
+                    <h3>Where </h3>
+                    <div class="go-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d471220.56298726925!2d88.04954505934278!3d22.675752108874445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f882db4908f667%3A0x43e330e68f6c2cbc!2sKolkata%2C+West+Bengal!5e0!3m2!1sen!2sin!4v1505115444596"
+                            width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <!-- <div class="event-detail-box">
+                    <h3>Organizer</h3>
+                    <div class="org-inn">
+                        <img class="img-responsive" src="img/thestarledgerlogo.png" alt="" />
+                        <p class="text-center">The Star-Ledger is your #1 source for coupons to save hundreds! Don't miss this one time event! Share
+                            with your family and friends!</p>
+                        <a class="btn btn-default more" href="#">
+                            <i class="fa fa-envelope" aria-hidden="true"></i> Contact the Organizer</a>
+                        <a class="btn btn-default more" href="#">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i> View organizer profile</a>
+
+                        <ul>
+                            <li>
+                                <a href="#">Upcoming event on Eventbrite</a>
+                                <kbd>6</kbd>
+                            </li>
+                            <li>
+                                <a href="#">Past events on Eventbrite</a>
+                                <kbd>1</kbd>
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+                <!-- <div class="event-detail-box ri-bot">
+                    <p>FREE Extreme Couponing Event! Wednesday, September 20, 2017 in Rutherford, New Jersey!</p>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid other-event">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Other Events You May Like</h2>
+                <div class="event-carou">
+                    <!-- <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
+                        <div class="MultiCarousel-inner">
+                            <div class="item" *ngFor="let item of allEventData">
+                                <div class="event-box">
+                                    <div class="main">
+                                        <div class="event-img view view-first">
+                                            <img class="img-responsive" src="assets/img/event/img{{item.EventImage1}}" alt="" />
+                                        </div>
+                                    </div>
+                                    <div class="event-con">
+                                        <h3>{{item.EventName}}</h3>
+                                        <p class="pad-top">
+                                            <i class="fa fa-calendar"></i>{{item.EventStartDateTime | date:'short'}}</p>
+                                        <p>
+                                            <i class="fa fa-map-marker"></i>{{item.PlaceName}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="btn btn-primary leftLst">
+                            <i class="fa fa-chevron-left"></i>
+                        </button>
+                        <button class="btn btn-primary rightLst">
+                            <i class="fa fa-chevron-right"></i>
+                        </button>
+                    </div> -->
+                    <ngx-carousel [inputs]="carouselTile" (carouselLoad)="carouselTileLoad($event)">
+                        <ngx-tile NgxCarouselItem *ngFor="let Tile of carouselTileItems;let i = index">
+                            <div class="main">
+                                <div class="event-img view view-first">
+                                    <img class="img-responsive" src="assets/img/event/img{{allEventData[i]?.EventImage1}}" alt="" />
+                                </div>
+                            </div>
+                            <div class="event-con">
+                                <h3>{{allEventData[i]?.EventName}}</h3>
+                                <p class="pad-top">
+                                    <i class="fa fa-calendar"></i>{{allEventData[i]?.EventStartDateTime | date:'short'}}</p>
+                                <p>
+                                    <i class="fa fa-map-marker"></i>{{allEventData[i]?.PlaceName}}</p>
+                            </div>
+                        </ngx-tile>
+
+                        <button NgxCarouselPrev class='leftRs'>&lt;</button>
+                        <button NgxCarouselNext class='rightRs'>&gt;</button>
+                    </ngx-carousel>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- / MAIN CONTENT -->
