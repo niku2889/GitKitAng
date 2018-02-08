@@ -3027,3 +3027,12 @@ CONTACT INFO DETAILS
     font-weight: normal;
 }
 
+.or-list {
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    height: 47px;
+    padding: 11px 13px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}

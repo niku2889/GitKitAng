@@ -19,12 +19,13 @@ import { HeaderComponent } from './common/header/header.cmp';
 import { FooterComponent } from './common/footer/footer.cmp';
 import { LoginComponent } from './common/login/login.cmp';
 import { RegisterComponent } from './common/register/register.cmp';
+import { PaymentComponent } from './payment/payment.component';
 
 
 const routes: Routes = [];
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, HeaderComponent, FooterComponent, LoginComponent, RegisterComponent, AddEventComponent,EventDetailComponent
+        AppComponent, HomeComponent, HeaderComponent, FooterComponent, LoginComponent, RegisterComponent, AddEventComponent,EventDetailComponent, PaymentComponent
   ],
   imports: [
       BrowserModule,

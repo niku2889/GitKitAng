@@ -9,6 +9,21 @@
                         , {{addressData[0]?.State}} , {{addressData[0]?.PinCode}} </a>
                 </p>
             </div>
+            <div class="col-md-6 col-md-offset-3">
+                <div class="eve-time">
+                    <ul>
+                        <li>
+                            <i class="fa fa-calendar"></i>
+                            <h4>{{eventData[0]?.EventEndDateTime | date:'shortDate'}}</h4>
+                        </li>
+
+                        <li>
+                            <i class="fa fa-clock-o"></i>
+                            <h4>{{eventData[0]?.EventEndDateTime | date:'mediumTime'}}</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-8">
@@ -47,7 +62,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <a class="btn btn-default more" href="#">Register</a>
+                        <a class="btn btn-default more" role="button" data-toggle="modal" data-target="#register-modal">Register</a>
+                        <a class="btn btn-default more" [routerLink]="['payment']" style="float:right;">Buy Ticket</a>
                     </div>
                 </div>
                 <!-- / Ticket Information -->
@@ -163,9 +179,63 @@
                     </div>
                 </div> -->
             </div>
-
-
             <div class="col-md-4">
+                <div class="event-detail-box">
+                    <h3>Order Summary</h3>
+                    <div class="ticket-box">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="or-list">Total Tickets</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="$0.00 USD" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="or-list">Add-on</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="$0.00 USD" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="or-list">Processing Fee</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="$0.00 USD" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="or-list">
+                                        <strong>Sub Total</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mar-bottom">
+                                        <input class="form-control" type="text" placeholder="$0.00 USD" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <!-- / Order Summary -->
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <!-- <div class="event-detail-box text-center">
                     <a class="btn btn-default more" href="#">Save This Event</a>
                 </div> -->
@@ -203,6 +273,23 @@
                     <p>FREE Extreme Couponing Event! Wednesday, September 20, 2017 in Rutherford, New Jersey!</p>
                 </div> -->
 
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-des">
+                <p>All Sales are FINAL.</p>
+                <p>All tickets are NON-REFUNDABLE and NON-TRANSFERABLE.</p>
+                <p>The person in whose name the ticket is issued must also be present at the door with valid photo ID.</p>
+                <p>A printout of the order receipt issued by tickethungama.com should be produced at the venue. Please NOTE
+                    that some venues / organizers may need you to exchange the eTicket issued by TicketHungama.com with the
+                    actual ticket in order to get an entry.</p>
+                <p>If the event attendee is different from the credit card holder, a copy of the credit card used for ticket
+                    purchase must be produced along with the order.</p>
+                <p>Any failure in providing the aforementioned documents may result in denial of admission to the event with
+                    no refund.</p>
+                <p>In case of event being cancelled/postponed tickethungama.com will refund only the face value of the ticket
+                    and NOT the service fee.</p>
             </div>
         </div>
     </div>
