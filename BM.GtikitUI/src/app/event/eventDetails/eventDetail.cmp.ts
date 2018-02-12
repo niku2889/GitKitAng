@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ViewContainerRef } from '@angular/core';
 import { EventService } from '../event.service';
 import { NgxCarousel } from 'ngx-carousel';
+import { parse } from 'querystring';
 declare var $: any;
 
 @Component({
@@ -49,6 +50,10 @@ export class EventDetailComponent implements OnInit {
     addressData: any[] = [];
     public carouselTileItems: Array<any>;
     public carouselTile: NgxCarousel;
+    totalPrice: number = 0;
+    totalTicket:number = 0;
+    array1: any[] = [];
+    array2: any[] = [];
 
     ngOnInit() {
         this.getEventDetails();
@@ -115,6 +120,25 @@ export class EventDetailComponent implements OnInit {
             (error) => {
                 console.log(error);
             });
+    }
+
+    getTicketDeatails(noofTicket: any, ticketPrice: any, index: any) {
+        this.array1[index] = (noofTicket * ticketPrice);
+        this.array2[index] = (noofTicket);
+
+        this.totalPrice = 0;
+        for (let i = 0; i < this.array1.length; i++) {
+            if (this.array1[i]) {
+                this.totalPrice = this.totalPrice + Number(this.array1[i]);
+            }
+        }
+
+        this.totalTicket = 0;
+        for (let i = 0; i < this.array2.length; i++) {
+            if (this.array2[i]) {
+                this.totalTicket = this.totalTicket + Number(this.array2[i]);
+            }
+        }
     }
 }
 

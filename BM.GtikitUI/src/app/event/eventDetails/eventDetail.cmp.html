@@ -39,7 +39,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of ticketData">
+                                <tr *ngFor="let item of ticketData;let i = index">
                                     <td>
                                         <strong>{{item.TicketType}}</strong>
                                         <div class="des">Presentation is 60 minutes. Please arrive 10-15 minutes early to allow time to check
@@ -51,7 +51,7 @@
                                         <span *ngIf="item.TicketPrice > 0" class="label label-success">$ {{item.TicketPrice}}</span>
                                     </td>
                                     <td align="right">
-                                        <select class="form-control minimal">
+                                        <select class="form-control minimal" (change)="getTicketDeatails($event.target.value,item.TicketPrice,i)">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="$0.00 USD" disabled>
+                                        <input class="form-control" type="text" placeholder="0" disabled value="{{totalTicket}}">
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mar-bottom">
-                                        <input class="form-control" type="text" placeholder="$0.00 USD" disabled>
+                                        <input class="form-control" type="text" placeholder="$0.00 USD" disabled value="{{totalPrice}}">
                                     </div>
                                 </div>
                             </div>
