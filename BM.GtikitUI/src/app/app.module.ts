@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 import { routing } from "./app.routing";
@@ -20,7 +20,8 @@ import { FooterComponent } from './common/footer/footer.cmp';
 import { LoginComponent } from './common/login/login.cmp';
 import { RegisterComponent } from './common/register/register.cmp';
 import { PaymentComponent } from './payment/payment.component';
-
+import { NgXCreditCardsModule } from 'ngx-credit-cards';
+import { CustomFormsModule } from 'ng2-validation'
 
 const routes: Routes = [];
 @NgModule({
@@ -30,6 +31,7 @@ const routes: Routes = [];
   imports: [
       BrowserModule,
       FormsModule,
+      ReactiveFormsModule,
       HttpModule,
       routing,
       RouterModule,
@@ -38,7 +40,9 @@ const routes: Routes = [];
       BsDatepickerModule.forRoot(),
       TimepickerModule.forRoot(),
       CarouselModule.forRoot(),
-      NgxCarouselModule
+      NgxCarouselModule,
+      NgXCreditCardsModule,
+      CustomFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

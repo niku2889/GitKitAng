@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ViewContainerRef } from '@angular/core';
 import { EventService } from '../event.service';
 import { NgxCarousel } from 'ngx-carousel';
 import { parse } from 'querystring';
+import { CreditCardValidator } from 'ngx-credit-cards';
 declare var $: any;
 
 @Component({
@@ -56,6 +58,8 @@ export class EventDetailComponent implements OnInit {
     array2: any[] = [];
     isEvent: boolean = true;
     billingModel: any = {};
+    paymentModel: any = {};
+    form: FormGroup;
 
     ngOnInit() {
         this.getEventDetails();
@@ -75,12 +79,21 @@ export class EventDetailComponent implements OnInit {
             touch: true,
             easing: 'ease'
         }
+
+
     }
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private eService: EventService) {
+        private eService: EventService,
+        private fb: FormBuilder) {
+        this.form = this.fb.group({
+            cardNumber: ['', CreditCardValidator.validateCardNumber],
+            cardExpDate: ['', CreditCardValidator.validateCardExpiry],
+            cardCvv: ['', CreditCardValidator.validateCardCvc],
+            cardName: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+        });
     }
     public carouselTileLoad(evt: any) {
 
@@ -146,6 +159,26 @@ export class EventDetailComponent implements OnInit {
     proceedToPayment() {
         this.isEvent = false;
     }
+
+    addBilling(e) {
+        if (this.billingModel) {
+
+        } else {
+            e.preventDefault();
+            alert('hi')
+        }
+
+    }
+
+    onClick(link: any) {
+        // Do something relevant with the object... 
+        return false;
+    }
+
+    onSubmit(){
+        
+    }
+
 
 }
 
