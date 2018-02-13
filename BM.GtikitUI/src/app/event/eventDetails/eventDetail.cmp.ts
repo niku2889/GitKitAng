@@ -51,9 +51,11 @@ export class EventDetailComponent implements OnInit {
     public carouselTileItems: Array<any>;
     public carouselTile: NgxCarousel;
     totalPrice: number = 0;
-    totalTicket:number = 0;
+    totalTicket: number = 0;
     array1: any[] = [];
     array2: any[] = [];
+    isEvent: boolean = true;
+    billingModel: any = {};
 
     ngOnInit() {
         this.getEventDetails();
@@ -63,13 +65,13 @@ export class EventDetailComponent implements OnInit {
 
         this.carouselTile = {
             grid: { xs: 2, sm: 3, md: 3, lg: 5, all: 0 },
-            slide: 2,
+            slide: 1,
             speed: 400,
             animation: 'lazy',
             point: {
-                visible: true
+                visible: false
             },
-            load: 2,
+            load: 1,
             touch: true,
             easing: 'ease'
         }
@@ -140,6 +142,11 @@ export class EventDetailComponent implements OnInit {
             }
         }
     }
+
+    proceedToPayment() {
+        this.isEvent = false;
+    }
+
 }
 
 
