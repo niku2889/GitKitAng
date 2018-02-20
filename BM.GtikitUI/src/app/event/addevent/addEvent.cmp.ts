@@ -109,7 +109,7 @@ export class AddEventComponent implements OnInit {
     SaveEvent() {
         let tData: any[] = [];
         for (let i = 0; i < this.ticketData.length; i++) {
-            const ticket = JSON.stringify({
+            const ticket = {
                 "EventTicketId": 0,
                 "ProviderEventId": 0,
                 "TicketType": this.ticketData[i].type,
@@ -118,7 +118,7 @@ export class AddEventComponent implements OnInit {
                 "TicketPrice": this.ticketData[i].price,
                 "TicketDiscount": this.ticketData[i].perOrder,
                 "IsActive": true
-            });
+            };
             tData.push(ticket);
         }
         this.eService.saveEvent(this.eventModel, this.locationModel, this.dateModel, this.occurModel, this.timeZoneModel, tData)

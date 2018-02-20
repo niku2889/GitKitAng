@@ -11,8 +11,6 @@ export class EventService {
     constructor(private http: Http) { }
 
     saveEvent(event: any, location: any, date: any, occur: any, timezone: any, tickit: any) {
-        console.log(date);
-        console.log(tickit)
         const body = JSON.stringify({
             "ProviderEventId": 0,
             "ProviderId": 1,
@@ -43,7 +41,6 @@ export class EventService {
             "ImageCategoryId": 1,
             "EventTicketRate": tickit
         });
-        console.log(body)
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({ headers: headers });
@@ -79,7 +76,6 @@ export class EventService {
             "State": (location.state == undefined ? '' : location.state),
             "WebSite": "www.gtikit.com"
         });
-        console.log(body)
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({ headers: headers });
@@ -92,7 +88,64 @@ export class EventService {
         return this.http.get(this.API_ENDPOINT + 'GTIKIT/GTCustomer/EventPlaceAddress/' + eventid)
             .map((response: Response) => response.json());
     }
-    
+
+    addBillingAddress(billing: any, cutomerId: any) {
+        const body = JSON.stringify({
+            "Id": 0,
+            "CustomerId": cutomerId,
+            "AddressType": "Main",
+            "AddressLine1": billing.address,
+            "AddressLine2": billing.zip,
+            "City": billing.city,
+            "States": billing.state,
+            "Country": billing.country,
+            "Mobile": billing.phone,
+            "IsActive": true
+        });
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(this.API_ENDPOINT + 'GTIKIT/GTCustomer/Addresses', body, options)
+            .map((response: Response) => response.json());
+    }
+
+    addCardDetails(card: any, cutomerId: any) {
+        const body = JSON.stringify({
+            "CustomerId": cutomerId,
+            "CardType": 1,
+            "CardNumber": card.cardNumber,
+            "ExpMonth": card.month,
+            "ExpYear": card.year,
+            "SecurityNo": card.cardCVC,
+            "IsDefault": 1,
+            "CreditCardID": cutomerId+10000
+        });
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(this.API_ENDPOINT + 'GTIKIT/GTCustomer/Payments', body, options)
+            .map((response: Response) => response.json());
+    }
+
+    addCustomerOrder(CustomerId: any, ticketdata: any) {
+        const body = JSON.stringify({ 
+              "OrderRowId":0,
+              "OrderId":"OrderNo" + CustomerId,
+              "CustomerId":CustomerId,
+              "IsVoid":true,
+              "OrderDetail": ticketdata
+           });
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(this.API_ENDPOINT + 'GTIKIT/GTCustomer/Order', body, options)
+            .map((response: Response) => response.json());
+    }
+
+
     private handleError(error: any) {
         return Observable.throw(error.json());
     }

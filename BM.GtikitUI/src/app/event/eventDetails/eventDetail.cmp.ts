@@ -7,11 +7,12 @@ import { NgxCarousel } from 'ngx-carousel';
 import { parse } from 'querystring';
 import { CreditCardValidator } from 'ngx-credit-cards';
 declare var $: any;
+import { CommonService } from '../../common/common.service';
 
 @Component({
     selector: 'app-event-detail',
     templateUrl: './eventDetail.cmp.html',
-    providers: [EventService],
+    providers: [EventService, CommonService],
     styles: [`
     
         h1{
@@ -60,6 +61,12 @@ export class EventDetailComponent implements OnInit {
     billingModel: any = {};
     paymentModel: any = {};
     form: FormGroup;
+    successMsg: string = '';
+    errorMsg: string = '';
+    successMsg1: string = '';
+    errorMsg1: string = '';
+    noTicket: string = '';
+    customerId: any;
 
     ngOnInit() {
         this.getEventDetails();
@@ -87,6 +94,7 @@ export class EventDetailComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private eService: EventService,
+        private cService: CommonService,
         private fb: FormBuilder) {
         this.form = this.fb.group({
             cardNumber: ['', CreditCardValidator.validateCardNumber],
@@ -120,7 +128,6 @@ export class EventDetailComponent implements OnInit {
         this.eService.getEventAddress(this.route.snapshot.paramMap.get('id'))
             .subscribe((response) => {
                 this.addressData = response;
-                console.log(this.addressData)
             },
             (error) => {
                 console.log(error);
@@ -157,17 +164,105 @@ export class EventDetailComponent implements OnInit {
     }
 
     proceedToPayment() {
-        this.isEvent = false;
+        if (this.totalPrice > 0) {
+            this.isEvent = false;
+        } else {
+            this.noTicket = "Kindly choose any ticket type to proceed."
+            setTimeout(function () {
+                this.noTicket = '';
+            }.bind(this), 5000);
+        }
     }
 
     addBilling(e) {
         if (this.billingModel) {
+            this.cService.createBillingUser(this.billingModel)
+                .subscribe(
+                data => {
+                    this.customerId = data.Id;
 
-        } else {
-            e.preventDefault();
-            alert('hi')
+                    //Billing Address service call
+                    this.eService.addBillingAddress(this.billingModel, data.Id)
+                        .subscribe(
+                        data1 => {
+                            console.log(data1)
+                            this.successMsg = "Successfully added customer billing and order details";
+                            setTimeout(function () {
+                                this.successMsg = '';
+                            }.bind(this), 5000);
+                        },
+                        error => {
+                            this.errorMsg = error._body;
+                            setTimeout(function () {
+                                this.errorMsg = '';
+                            }.bind(this), 5000);
+                        });
+
+                    //Customer order service call
+                    let tData: any[] = [];
+                    for (let i = 0; i < this.ticketData.length; i++) {
+                        const ticket ={
+                            "OrderRowId": this.ticketData[i].type,
+                            "EventId": this.ticketData[i].type,
+                            "TicketRateId": i+1,
+                            "Qty": this.array2[i],
+                            "RegularPrice": this.ticketData[i].price,
+                            "Discount": 0,
+                            "SubTotal": this.array1[i],
+                            "ServiceFee": 0,
+                            "IsVoid": true
+                        };
+                        tData.push(ticket);
+                    }
+
+                    this.eService.addCustomerOrder(this.customerId, tData)
+                        .subscribe(
+                        data2 => {
+                            this.successMsg = "Successfully added customer billing and order details";
+                            setTimeout(function () {
+                                this.successMsg = '';
+                            }.bind(this), 5000);
+                        },
+                        error => {
+                            this.errorMsg = error._body;
+                            setTimeout(function () {
+                                this.errorMsg = '';
+                            }.bind(this), 5000);
+                        });
+                },
+                error => {
+                    this.errorMsg = error._body;
+                    setTimeout(function () {
+                        this.errorMsg = '';
+                    }.bind(this), 5000);
+                });
         }
+    }
 
+    addCreditCard() {
+        if (this.billingModel && this.customerId) {
+            if (this.paymentModel) {
+                this.eService.addCardDetails(this.paymentModel, this.customerId)
+                    .subscribe(
+                    data1 => {
+                        this.successMsg1 = "Successfully added payment details";
+                        setTimeout(function () {
+                            this.successMsg1 = '';
+                        }.bind(this), 5000);
+                    },
+                    error => {
+                        this.errorMsg1 = error._body;
+                        setTimeout(function () {
+                            this.errorMsg = '';
+                        }.bind(this), 5000);
+                    });
+            }
+        } else {
+            this.errorMsg1 = "Please enter billing deails";
+            setTimeout(function () {
+                this.errorMsg1 = '';
+            }.bind(this), 5000);
+        }
     }
 
     onClick(link: any) {
@@ -175,8 +270,8 @@ export class EventDetailComponent implements OnInit {
         return false;
     }
 
-    onSubmit(){
-        
+    onSubmit() {
+
     }
 
 

@@ -26,6 +26,22 @@ export class CommonService {
             .map((response: Response) => response.json());
     }
 
+    createBillingUser(billing: any) {  
+        const body = JSON.stringify({
+            "firstname": billing.firstName,
+            "lastname": billing.lastName,
+            "email": billing.email,
+            "password": billing.firstName + billing.lastName
+        });
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        //headers.append('Access-Control-Allow-Origin', '*');
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(this.API_ENDPOINT + 'GTIKIT/GTCustomer', body, options)
+            .map((response: Response) => response.json());
+    }
+
     loginUser(email:any,pssword:any) {
         let baseurl = this.API_ENDPOINT + 'GTCustomer/validate?';
         let param1 = 'UserName=';
