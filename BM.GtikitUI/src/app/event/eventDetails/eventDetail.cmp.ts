@@ -164,7 +164,7 @@ export class EventDetailComponent implements OnInit {
     }
 
     proceedToPayment() {
-        if (this.totalPrice > 0) {
+        if (this.array2.length > 0) {
             this.isEvent = false;
         } else {
             this.noTicket = "Kindly choose any ticket type to proceed."
