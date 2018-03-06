@@ -3,25 +3,57 @@
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt=""></a>
+      <a class="navbar-brand" [routerLink]="['/']">
+        <img src="assets/img/logo.png" alt="">
+      </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="pull-right" style="margin-left: 2%;" *ngIf="isAccount">
+        <ul class="nav pull-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa 	fa fa-user-circle-o fa-2x"></i> Welcome, User
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a [routerLink]="['/profile']">
+                  <i class="fa fa-user"></i> Profile</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="" (click)="logout()">
+                  <i class="fa fa-sign-out"></i> Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" role="button" data-toggle="modal" data-target="#login-modal">Login</a></li>
-        <li><a href="#" role="button" data-toggle="modal" data-target="#register-modal">Registration</a></li>
-
-        <li><a class="event" [routerLink]="['/addevent']">Add Event</a></li>
+        <li>
+          <a href="#" *ngIf="!isAccount" role="button" data-toggle="modal" data-target="#login-modal">Login</a>
+        </li>
+        <li>
+          <a href="#" *ngIf="!isAccount" role="button" data-toggle="modal" data-target="#register-modal">Registration</a>
+        </li>
+        <li>
+          <a class="event" [routerLink]="['/addevent']">Add Event</a>
+        </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+
+
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
 </nav>
 <!-- /navigation -->
-

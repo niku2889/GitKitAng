@@ -18,6 +18,8 @@ import { EventDetailComponent } from './event/eventDetails/eventDetail.cmp';
 import { HeaderComponent } from './common/header/header.cmp';
 import { FooterComponent } from './common/footer/footer.cmp';
 import { LoginComponent } from './common/login/login.cmp';
+import { ProfileComponent } from './common/profile/profile.cmp';
+import { LogoutComponent } from './common/logout/logout.cmp';
 import { RegisterComponent } from './common/register/register.cmp';
 import { PaymentComponent } from './payment/payment.component';
 import { NgXCreditCardsModule } from 'ngx-credit-cards';
@@ -26,7 +28,8 @@ import { CustomFormsModule } from 'ng2-validation'
 const routes: Routes = [];
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, HeaderComponent, FooterComponent, LoginComponent, RegisterComponent, AddEventComponent,EventDetailComponent, PaymentComponent
+        AppComponent, HomeComponent, HeaderComponent, FooterComponent, LoginComponent, RegisterComponent, 
+        AddEventComponent,EventDetailComponent, PaymentComponent,ProfileComponent,LogoutComponent
   ],
   imports: [
       BrowserModule,
