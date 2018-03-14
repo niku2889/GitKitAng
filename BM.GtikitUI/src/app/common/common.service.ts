@@ -54,6 +54,11 @@ export class CommonService {
             .map((response: Response) => response.json());
     }
 
+    getTickets() {
+        return this.http.get(this.API_ENDPOINT + 'GTIKIT/GTCustomer/GetCustomerOrderHistory/1')
+            .map((response: Response) => response.json());
+    }
+
     private handleError(error: any) {
         return Observable.throw(error.json());
     }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 import { routing } from "./app.routing";
@@ -23,31 +23,33 @@ import { LogoutComponent } from './common/logout/logout.cmp';
 import { RegisterComponent } from './common/register/register.cmp';
 import { PaymentComponent } from './payment/payment.component';
 import { NgXCreditCardsModule } from 'ngx-credit-cards';
-import { CustomFormsModule } from 'ng2-validation'
+import { CustomFormsModule } from 'ng2-validation';
+import { TableModule } from 'primeng/table';
 
 const routes: Routes = [];
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, HeaderComponent, FooterComponent, LoginComponent, RegisterComponent, 
-        AddEventComponent,EventDetailComponent, PaymentComponent,ProfileComponent,LogoutComponent
-  ],
-  imports: [
-      BrowserModule,
-      FormsModule,
-      ReactiveFormsModule,
-      HttpModule,
-      routing,
-      RouterModule,
-      BrowserAnimationsModule,
-      ToastModule.forRoot(),
-      BsDatepickerModule.forRoot(),
-      TimepickerModule.forRoot(),
-      CarouselModule.forRoot(),
-      NgxCarouselModule,
-      NgXCreditCardsModule,
-      CustomFormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+        AppComponent, HomeComponent, HeaderComponent, FooterComponent, LoginComponent, RegisterComponent,
+        AddEventComponent, EventDetailComponent, PaymentComponent, ProfileComponent, LogoutComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpModule,
+        routing,
+        RouterModule,
+        BrowserAnimationsModule,
+        ToastModule.forRoot(),
+        BsDatepickerModule.forRoot(),
+        TimepickerModule.forRoot(),
+        CarouselModule.forRoot(),
+        NgxCarouselModule,
+        NgXCreditCardsModule,
+        CustomFormsModule,
+        TableModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

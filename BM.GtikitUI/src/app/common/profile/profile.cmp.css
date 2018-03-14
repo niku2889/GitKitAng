@@ -1,0 +1,32 @@
+:host /deep/ .ui-table .ui-table-thead > tr > th {
+    background: #e2d2d2;
+    color: #1e2548;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-top: 1px solid lightgray;
+    height: 40px;
+    border-bottom: 1px solid lightgray;
+    text-align: center;
+    /* padding-right: 25px; */
+}
+
+:host /deep/ .ui-table .ui-table-tbody > tr > td {
+    border: none;
+    background: inherit;
+    font-size: 14px;
+    padding: .9em .5em;
+    color:#656565;
+    text-align: center;
+    padding-right: 10px;
+}
+
+:host /deep/ .ui-table .ui-table-tbody > tr {
+    background: #ffffff;
+    color: #222222;
+    border-bottom: 1px solid lightgray;
+}
+
+:host /deep/  .ui-table .ui-table-tbody > tr:nth-child(even) {
+    background-color: #f9f9f9!important;
+}
