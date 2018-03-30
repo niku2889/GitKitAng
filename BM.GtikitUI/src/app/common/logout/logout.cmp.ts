@@ -13,6 +13,7 @@ export class LogoutComponent implements OnInit {
 
     ngOnInit() {
         localStorage.setItem('login','false');
+        localStorage.setItem('custid','');
         this.router.navigate(['/']);
     }
 }

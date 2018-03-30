@@ -67,6 +67,8 @@ export class EventDetailComponent implements OnInit {
     errorMsg1: string = '';
     noTicket: string = '';
     customerId: any;
+    userData: any;
+    readonly:boolean = false;
 
     ngOnInit() {
         this.getEventDetails();
@@ -86,7 +88,25 @@ export class EventDetailComponent implements OnInit {
             touch: true,
             easing: 'ease'
         }
-
+        let custId = localStorage.getItem('custid');
+        if (custId != '' && custId != undefined && localStorage.getItem('login') == 'true') {
+            this.cService.getAllUserData()
+                .subscribe((response) => {
+                    this.userData = response;
+                    this.billingModel = {
+                        firstname: this.userData.GTCustomerMain != null ? this.userData.GTCustomerMain[0].FirstName : '',
+                        lastname: this.userData.GTCustomerMain != null ? this.userData.GTCustomerMain[0].LastName : '',
+                        email: this.userData.GTCustomerMain != null ? this.userData.GTCustomerMain[0].Email : '',
+                    }
+                    this.readonly = true;
+                },
+                (error) => {
+                    this.errorMsg = error._body;
+                    setTimeout(function () {
+                        this.errorMsg = '';
+                    }.bind(this), 5000);
+                });
+        }
 
     }
 
@@ -138,6 +158,10 @@ export class EventDetailComponent implements OnInit {
         this.eService.GetAllEvents()
             .subscribe((response) => {
                 this.allEventData = response.filter(x => x.ProviderEventId != this.route.snapshot.paramMap.get('id'));
+                this.carouselTileItems = [];
+                for (let i = 0; i < this.allEventData.length; i++) {
+                    this.carouselTileItems.push(i);
+                }
             },
             (error) => {
                 console.log(error);
@@ -164,6 +188,7 @@ export class EventDetailComponent implements OnInit {
     }
 
     proceedToPayment() {
+
         if (this.array2.length > 0) {
             this.isEvent = false;
         } else {
@@ -176,68 +201,100 @@ export class EventDetailComponent implements OnInit {
 
     addBilling(e) {
         if (this.billingModel) {
-            this.cService.createBillingUser(this.billingModel)
-                .subscribe(
-                data => {
-                    this.customerId = data.Id;
+            let custId = localStorage.getItem('custid');
+            if (custId != '' && custId != undefined && localStorage.getItem('login') == 'true') {
+                this.customerId = custId;
+                //Billing Address service call
+                this.eService.addBillingAddress(this.billingModel, custId)
+                    .subscribe(
+                    data1 => {
+                        this.addOrder();
+                        this.successMsg = "Successfully added customer billing and order details";
+                        setTimeout(function () {
+                            this.successMsg = '';
+                        }.bind(this), 5000);
+                    },
+                    error => {
+                        this.errorMsg = error._body;
+                        setTimeout(function () {
+                            this.errorMsg = '';
+                        }.bind(this), 5000);
+                    });
+            }
+            else {
+                this.cService.createBillingUser(this.billingModel)
+                    .subscribe(
+                    data => {
+                        this.customerId = data.Id;
+                        localStorage.setItem('custid',this.customerId);
+                        localStorage.setItem('login','true');
+                        //Billing Address service call
+                        this.eService.addBillingAddress(this.billingModel, data.Id)
+                            .subscribe(
+                            data1 => {
+                                this.addOrder();
+                                this.successMsg = "Successfully added customer billing and order details";
+                                setTimeout(function () {
+                                    this.successMsg = '';
+                                }.bind(this), 5000);
+                            },
+                            error => {
+                                this.errorMsg = error._body;
+                                setTimeout(function () {
+                                    this.errorMsg = '';
+                                }.bind(this), 5000);
+                            });
 
-                    //Billing Address service call
-                    this.eService.addBillingAddress(this.billingModel, data.Id)
-                        .subscribe(
-                        data1 => {
-                            console.log(data1)
-                            this.successMsg = "Successfully added customer billing and order details";
-                            setTimeout(function () {
-                                this.successMsg = '';
-                            }.bind(this), 5000);
-                        },
-                        error => {
-                            this.errorMsg = error._body;
-                            setTimeout(function () {
-                                this.errorMsg = '';
-                            }.bind(this), 5000);
-                        });
 
-                    //Customer order service call
-                    let tData: any[] = [];
-                    for (let i = 0; i < this.ticketData.length; i++) {
-                        const ticket ={
-                            "OrderRowId": this.ticketData[i].type,
-                            "EventId": this.ticketData[i].type,
-                            "TicketRateId": i+1,
-                            "Qty": this.array2[i],
-                            "RegularPrice": this.ticketData[i].price,
-                            "Discount": 0,
-                            "SubTotal": this.array1[i],
-                            "ServiceFee": 0,
-                            "IsVoid": true
-                        };
-                        tData.push(ticket);
-                    }
+                    },
+                    error => {
+                        this.errorMsg = error._body;
+                        setTimeout(function () {
+                            this.errorMsg = '';
+                        }.bind(this), 5000);
+                    });
+            }
 
-                    this.eService.addCustomerOrder(this.customerId, tData)
-                        .subscribe(
-                        data2 => {
-                            this.successMsg = "Successfully added customer billing and order details";
-                            setTimeout(function () {
-                                this.successMsg = '';
-                            }.bind(this), 5000);
-                        },
-                        error => {
-                            this.errorMsg = error._body;
-                            setTimeout(function () {
-                                this.errorMsg = '';
-                            }.bind(this), 5000);
-                        });
-                },
-                error => {
-                    this.errorMsg = error._body;
-                    setTimeout(function () {
-                        this.errorMsg = '';
-                    }.bind(this), 5000);
-                });
         }
     }
+
+    addOrder() {
+        //Customer order service call
+        let tData: any[] = [];
+        for (let i = 0; i < this.ticketData.length; i++) {
+            if (this.array2[i] > 0) {
+                const ticket = {
+                    "OrderRowId": this.ticketData[i].type,
+                    "EventId": this.ticketData[i].type,
+                    "TicketRateId": i + 1,
+                    "Qty": this.array2[i],
+                    "RegularPrice": this.array1[i],
+                    "Discount": 10,
+                    "SubTotal": this.array1[i],
+                    "ServiceFee": 0,
+                    "IsVoid": true,
+                    "EventName": this.eventData[0].EventName
+                };
+                tData.push(ticket);
+            }
+        }
+
+        this.eService.addCustomerOrder(this.customerId, tData)
+            .subscribe(
+            data2 => {
+                this.successMsg = "Successfully added customer billing and order details";
+                setTimeout(function () {
+                    this.successMsg = '';
+                }.bind(this), 5000);
+            },
+            error => {
+                this.errorMsg = error._body;
+                setTimeout(function () {
+                    this.errorMsg = '';
+                }.bind(this), 5000);
+            });
+    }
+
 
     addCreditCard() {
         if (this.billingModel && this.customerId) {
@@ -245,6 +302,7 @@ export class EventDetailComponent implements OnInit {
                 this.eService.addCardDetails(this.paymentModel, this.customerId)
                     .subscribe(
                     data1 => {
+                        this.router.navigate(['/payment']);
                         this.successMsg1 = "Successfully added payment details";
                         setTimeout(function () {
                             this.successMsg1 = '';

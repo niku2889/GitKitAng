@@ -1,6 +1,7 @@
 <!-- CAROUSEL -->
 <section class="banner">
-  <div id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000">
+  <div id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover"
+    data-interval="5000">
     <!-- Wrapper For Slides -->
     <div class="carousel-inner" role="listbox">
       <!-- Slide -->
@@ -16,8 +17,12 @@
               <h1 data-animation="animated fadeInDownBig">Lorem ipsum dolor sit amet</h1>
               <p data-animation="animated fadeInLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
               <a href="#" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">Find Out More</a>
-              <div class="left-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
-              <div class="right-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
+              <div class="left-line" data-animation="animated fadeInDown">
+                <img src="assets/img/line.png" alt="" />
+              </div>
+              <div class="right-line" data-animation="animated fadeInDown">
+                <img src="assets/img/line.png" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -34,12 +39,17 @@
           <h1 data-animation="animated fadeInDownBig">Lorem ipsum dolor sit amet</h1>
           <p data-animation="animated fadeInLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
           <a href="#" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">Find Out More</a>
-          <div class="left-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
-          <div class="right-line" data-animation="animated fadeInDown"><img src="assets/img/line.png" alt="" /></div>
+          <div class="left-line" data-animation="animated fadeInDown">
+            <img src="assets/img/line.png" alt="" />
+          </div>
+          <div class="right-line" data-animation="animated fadeInDown">
+            <img src="assets/img/line.png" alt="" />
+          </div>
         </div>
       </div>
       <!-- End of Slide -->
-    </div><!-- End of Wrapper For Slides -->
+    </div>
+    <!-- End of Wrapper For Slides -->
   </div>
 </section>
 <!-- / CAROUSEL -->
@@ -63,7 +73,7 @@
                 </div>
               </div>
               <div class="col-md-3">
-                <select class="form-control minimal" [(ngModel)]="searchByDate" name="searchByDate" >
+                <select class="form-control minimal" [(ngModel)]="searchByDate" name="searchByDate">
                   <option value="" selected="selected">All Dates</option>
                   <option value="today">Today</option>
                   <option value="tomorrow">Tomorrow</option>
@@ -79,7 +89,8 @@
             </div>
           </form>
         </div>
-      </div><!-- Banner bot-form -->
+      </div>
+      <!-- Banner bot-form -->
       <div class="col-md-12">
         <h2 class="text-center">Popular Events in</h2>
       </div>
@@ -92,14 +103,20 @@
                   <div class="event-img view view-first">
                     <img class="img-responsive" src="assets/img/event/img{{item.EventImage1}}" alt="" />
                     <div class="mask">
-                      <a [routerLink]="['eventDetail',item.ProviderEventId]" class="info"><i class="fa fa-link"></i></a>
+                      <a [routerLink]="['eventDetail',item.ProviderEventId]" class="info">
+                        <i class="fa fa-link"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
                 <div class="event-con">
                   <h3>{{item.EventName}}</h3>
-                  <p class="pad-top"><i class="fa fa-calendar"></i>{{item.EventStartDateTime | date:'short'}}</p>
-                  <p><i class="fa fa-map-marker"></i>{{item.PlaceName}}</p>
+                  <p class="pad-top">
+                    <i class="fa fa-calendar"></i>{{item.EventStartDateTime | date:'short'}}</p>
+                  <p style="margin-bottom:5px;">
+                    <i class="fa fa-map-marker"></i>{{item.PlaceName}}
+                    <a [routerLink]="['eventDetail',item.ProviderEventId]" class="btn btn-default btn-xs" style="float:right;border-radius: 3px;">More</a>
+                  </p>
                 </div>
               </div>
             </div>

@@ -28,12 +28,12 @@ export class LoginComponent implements OnInit {
         this.cService.loginUser(this.model.loginEmail, this.model.password)
             .subscribe((response) => {
                 this.successMsg = response;
-                console.log(response)
                 $("#login-modal").modal('hide');
                 this.loading = false;
                 setTimeout(function () {
                     this.successMsg = '';
                 }.bind(this), 5000);
+                localStorage.setItem('custid',response.Id);
                 localStorage.setItem('login','true');
                 window.location.reload();
             },

@@ -2413,7 +2413,7 @@ TABS
 }
 
 .right-dash{
-	padding:0 50px 99999px;
+	padding:0 15px 99999px;
 	-webkit-box-shadow: -1px 1px 1px rgba(0,0,0,.05);
    box-shadow: -1px 1px 1px rgba(0,0,0,.05);
 	 margin-bottom: -99999px;
